@@ -24,6 +24,7 @@
       padding: 0 20px 20px 20px;
     }
 
+    /* ---------- Header ---------- */
     .header {
       position: fixed;
       top: 0;
@@ -36,27 +37,26 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      flex-wrap: wrap;
     }
 
     .header-container {
       max-width: 1200px;
-      margin: 0 auto;
       width: 100%;
       display: flex;
       justify-content: space-between;
       align-items: center;
-      flex-wrap: wrap;
+      flex-wrap: nowrap; /* ✅ Prevents logo/menu from breaking */
     }
 
     .logo h1 {
-      font-size: 2em;
+      font-size: 2.5em;
       color: #1976d2;
       text-transform: uppercase;
-      letter-spacing: 1px;
+      letter-spacing: 2px;
       margin: 0;
     }
 
+    /* ---------- Navigation Menu ---------- */
     .nav-menu {
       display: flex;
       gap: 15px;
@@ -67,20 +67,23 @@
     .nav-item {
       background: #ffffff;
       color: #1976d2;
-      padding: 10px 20px;
+      padding: 12px 25px;
       border-radius: 10px;
       text-decoration: none;
       font-weight: 600;
-      font-size: 0.9em;
+      font-size: 1em;
       transition: all 0.3s ease;
       box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
       cursor: pointer;
       text-transform: uppercase;
+      letter-spacing: 1px;
     }
 
     .nav-item:hover {
       background: #1976d2;
       color: #ffffff;
+      transform: translateY(-3px);
+      box-shadow: 0 5px 15px rgba(25, 118, 210, 0.4);
     }
 
     .nav-item.active {
@@ -88,6 +91,7 @@
       color: #ffffff;
     }
 
+    /* ---------- Mobile Menu Button ---------- */
     .menu-toggle {
       display: none;
       flex-direction: column;
@@ -111,6 +115,15 @@
     }
     .menu-toggle.active span:nth-child(3) {
       transform: rotate(-45deg) translateY(-8px);
+    }
+
+    /* ---------- Slider ---------- */
+    .slider-section {
+      background: #ffffff;
+      padding: 30px;
+      border-radius: 15px;
+      margin-bottom: 30px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
     }
 
     .slider-container {
@@ -148,6 +161,35 @@
       max-width: 600px;
     }
 
+    .slide-content h2 {
+      font-size: 2em;
+      margin-bottom: 10px;
+    }
+
+    .slide-content p {
+      font-size: 1em;
+      line-height: 1.6;
+    }
+
+    /* ---------- Cards ---------- */
+    .section-heading {
+      text-align: center;
+      margin-bottom: 30px;
+    }
+
+    .section-heading h2 {
+      display: inline-block;
+      background: #e3f2fd;
+      color: #1976d2;
+      font-size: 2.5em;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      padding: 20px 50px;
+      border-radius: 15px;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    }
+
     .cards-section {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -162,34 +204,87 @@
       box-shadow: 0 5px 15px rgba(0, 0, 0, 0.12);
       transition: all 0.3s ease;
       cursor: pointer;
+      position: relative;
+      border: 1px solid #e0e0e0;
     }
 
-    footer {
+    .feature-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    }
+
+    .card-image-container {
+      position: relative;
       width: 100%;
-      background: #111;
-      color: #fff;
-      padding: 35px 0 25px 0;
-      text-align: center;
+      height: 120px;
+      overflow: hidden;
+    }
+
+    .card-image {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.4s ease;
+    }
+
+    .feature-card:hover .card-image {
+      transform: scale(1.05);
+    }
+
+    .card-badge {
+      position: absolute;
+      top: 10px;
+      right: 10px;
+      background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
+      color: white;
+      padding: 4px 12px;
+      border-radius: 15px;
+      font-size: 0.75em;
+      font-weight: bold;
+      z-index: 2;
+    }
+
+    .card-content {
+      padding: 15px;
+      position: relative;
+    }
+
+    .card-icon {
+      width: 40px;
+      height: 40px;
+      background: linear-gradient(135deg, #42a5f5 0%, #1976d2 100%);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2em;
+      color: white;
+      margin-bottom: 10px;
+    }
+
+    .card-content h3 {
+      color: #333;
       font-size: 1.1em;
-      border-radius: 16px 16px 0 0;
+      margin-bottom: 8px;
+      font-weight: 700;
     }
 
-    .footer-link {
-      color: #90caf9;
-      text-decoration: none;
-      margin: 0 10px;
+    .card-content p {
+      color: #666;
+      line-height: 1.5;
+      font-size: 0.85em;
+      margin-bottom: 12px;
     }
 
-    /* ✅ FIX for Mobile Header */
+    /* ---------- Responsive ---------- */
     @media (max-width: 768px) {
       body {
-        padding-top: 160px;
+        padding-top: 180px;
       }
 
       .header-container {
-        flex-direction: row;
-        justify-content: space-between;
-        align-items: center;
+        flex-direction: column;
+        align-items: flex-start;
       }
 
       .menu-toggle {
@@ -217,6 +312,7 @@
         padding: 12px 0;
       }
 
+      /* ✅ Horizontal Scroll Cards */
       .cards-section {
         display: flex;
         flex-wrap: nowrap;
@@ -231,6 +327,30 @@
         scroll-snap-align: center;
         min-width: 260px;
       }
+    }
+
+    .cards-section::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* ---------- Footer ---------- */
+    footer {
+      width: 100%;
+      background: #111;
+      color: #fff;
+      padding: 35px 0 25px 0;
+      text-align: center;
+      font-size: 1.1em;
+      border-radius: 16px 16px 0 0;
+    }
+    .footer-link {
+      color: #90caf9;
+      text-decoration: none;
+      margin: 0 10px;
+      font-weight: 500;
+    }
+    .footer-link:hover {
+      color: #fff;
     }
   </style>
 </head>
@@ -251,15 +371,25 @@
   </div>
 
   <div class="container">
-    <div class="slider-container">
-      <div class="slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
-        <div class="slide-content">
-          <h2>Welcome to Our Website</h2>
+    <div class="slider-section">
+      <div class="slider-container">
+        <div class="slide active" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);">
+          <div class="slide-content">
+            <h2>Welcome to Our Website</h2>
+            <p>Experience the beauty of modern web design with stunning visuals and smooth animations.</p>
+          </div>
         </div>
-      </div>
-      <div class="slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
-        <div class="slide-content">
-          <h2>Innovative Solutions</h2>
+        <div class="slide" style="background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);">
+          <div class="slide-content">
+            <h2>Innovative Solutions</h2>
+            <p>Discover cutting-edge technology that transforms your digital experience.</p>
+          </div>
+        </div>
+        <div class="slide" style="background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);">
+          <div class="slide-content">
+            <h2>Creative Design</h2>
+            <p>Beautiful interfaces crafted with attention to every detail and user experience.</p>
+          </div>
         </div>
       </div>
     </div>
@@ -270,10 +400,27 @@
 
     <div class="cards-section">
       <div class="feature-card">
-        <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" class="card-image">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1498050108023-c5249f4df085?w=800&q=80" class="card-image">
+          <span class="card-badge">F1</span>
+        </div>
+        <div class="card-content">
+          <div class="card-icon">💼</div>
+          <h3>Professional Services</h3>
+          <p>Comprehensive range of professional services designed to elevate your business.</p>
+        </div>
       </div>
+
       <div class="feature-card">
-        <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" class="card-image">
+        <div class="card-image-container">
+          <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?w=800&q=80" class="card-image">
+          <span class="card-badge">F2</span>
+        </div>
+        <div class="card-content">
+          <div class="card-icon">📊</div>
+          <h3>Data Analytics</h3>
+          <p>Transform data into actionable insights with advanced analytics tools.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -285,18 +432,27 @@
   </footer>
 
   <script>
+    function switchMenu(event, menuType) {
+      event.preventDefault();
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      event.target.classList.add('active');
+    }
+
+    // Toggle mobile menu
     const toggle = document.getElementById('menu-toggle');
     const navMenu = document.getElementById('nav-menu');
+
     toggle.addEventListener('click', () => {
       toggle.classList.toggle('active');
       navMenu.classList.toggle('show');
     });
 
+    // Auto slider
+    let currentSlideIndex = 0;
     const slides = document.querySelectorAll('.slide');
-    let current = 0;
     setInterval(() => {
-      slides.forEach((s, i) => s.classList.toggle('active', i === current));
-      current = (current + 1) % slides.length;
+      slides.forEach((slide, i) => slide.classList.toggle('active', i === currentSlideIndex));
+      currentSlideIndex = (currentSlideIndex + 1) % slides.length;
     }, 4000);
   </script>
 </body>

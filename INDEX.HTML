@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header, Info Box & Compact Photo Gallery Cards</title>
+    <title>Header with Left Logo, Info Box & Compact Photo Gallery Cards</title>
 
     <style>
         /* General Body Styles */
@@ -18,15 +18,26 @@
         .curved-header {
             background-color: #4a90e2; 
             color: white;
-            padding: 20px;
+            padding: 20px; /* अब यह सिर्फ ऊपर-नीचे की पैडिंग देगा */
             margin: 20px; 
             border-radius: 15px; 
-            text-align: center;
+            /* text-align: center; <--- इसे हटा दिया गया है */
         }
 
-        .header-content h1 {
-            margin: 0 0 10px 0;
+        /* --- .header-content में बदलाव किए गए हैं --- */
+        .header-content {
+            display: flex; /* फ्लेक्सबॉक्स लेआउट */
+            justify-content: space-between; /* सामग्री को किनारों पर धकेलें (लोगो बाएं, नेविगेशन दाएं) */
+            align-items: center; /* लंबवत रूप से केंद्र में करें */
+            padding: 0 20px; /* हेडर के अंदर थोड़ी बाएं-दाएं पैडिंग */
+            flex-wrap: wrap; /* मोबाइल पर तत्वों को अगली लाइन में भेजने के लिए */
         }
+
+        .logo-container img {
+            height: 40px; /* लोगो की ऊंचाई */
+            /* आप चाहें तो चौड़ाई भी सेट कर सकते हैं: width: auto; */
+        }
+        /* ------------------------------------------- */
 
         .header-content nav a {
             color: white;
@@ -72,10 +83,9 @@
         }
         /* --- इन्फो बॉक्स का CSS खत्म --- */
 
-        /* --- NEW Photo Gallery Cards (साइज़ छोटा किया गया) --- */
+        /* --- Photo Gallery Cards (साइज़ छोटा किया गया) --- */
         .gallery-container {
             display: grid; 
-            /* कार्ड की चौड़ाई कम की गई */
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
             gap: 25px; 
             padding: 20px; 
@@ -84,7 +94,7 @@
 
         .gallery-card {
             background-color: white;
-            border-radius: 10px; /* कोने हल्के गोल किए गए */
+            border-radius: 10px; 
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1); 
             border-left: 6px solid transparent; 
             overflow: hidden; 
@@ -96,19 +106,19 @@
         }
 
         /* प्रत्येक कार्ड के लिए अलग बॉर्डर रंग */
-        .gallery-card:nth-child(1) { border-left-color: #4a90e2; } /* नीला */
-        .gallery-card:nth-child(2) { border-left-color: #33CCFF; } /* हल्का नीला */
-        .gallery-card:nth-child(3) { border-left-color: #FF9933; } /* नारंगी */
-        .gallery-card:nth-child(4) { border-left-color: #8A2BE2; } /* बैंगनी */
+        .gallery-card:nth-child(1) { border-left-color: #4a90e2; } 
+        .gallery-card:nth-child(2) { border-left-color: #33CCFF; } 
+        .gallery-card:nth-child(3) { border-left-color: #FF9933; } 
+        .gallery-card:nth-child(4) { border-left-color: #8A2BE2; } 
 
         .gallery-card:hover {
-            transform: translateY(-8px) scale(1.02); /* थोड़ा कम उठाव */
+            transform: translateY(-8px) scale(1.02); 
             box-shadow: 0 15px 40px rgba(0, 0, 0, 0.2); 
         }
 
         .gallery-card img {
             width: 100%;
-            height: 150px; /* **इमेज की ऊंचाई कम की गई** */
+            height: 150px; 
             object-fit: cover; 
             transition: transform 0.3s ease; 
         }
@@ -118,7 +128,7 @@
         }
 
         .card-content {
-            padding: 15px 20px; /* पैडिंग कम की गई */
+            padding: 15px 20px; 
             flex-grow: 1; 
             display: flex;
             flex-direction: column;
@@ -143,7 +153,7 @@
             display: block; 
             background-color: #4a90e2;
             color: white;
-            padding: 12px 0; /* बटन की ऊंचाई कम की गई */
+            padding: 12px 0; 
             border-radius: 5px; 
             text-decoration: none;
             font-weight: bold;
@@ -166,7 +176,17 @@
         @media (max-width: 600px) {
             .curved-header {
                 margin: 10px; 
-                padding: 15px;
+                padding: 15px 10px; /* मोबाइल पर पैडिंग एडजस्ट की गई */
+            }
+
+            .header-content {
+                flex-direction: column; /* मोबाइल पर लोगो और बटन को एक के नीचे एक रखें */
+                text-align: center;
+                padding: 0; /* मोबाइल पर पैडिंग हटा दें */
+            }
+
+            .logo-container {
+                margin-bottom: 15px; /* लोगो के नीचे गैप */
             }
 
             .header-content nav a {
@@ -188,7 +208,7 @@
                 border-left-width: 4px; 
             }
             .gallery-card img {
-                height: 140px; /* मोबाइल पर इमेज की ऊंचाई थोड़ी और कम */
+                height: 140px; 
             }
             .card-content h4 {
                 font-size: 1.2em;
@@ -208,7 +228,10 @@
 
     <header class="curved-header">
         <div class="header-content">
-            <h1>मेरी वेबसाइट</h1>
+            <div class="logo-container">
+                <img src="https://via.placeholder.com/150x40/4a90e2/FFFFFF?text=My+Logo" alt="My Website Logo">
+            </div>
+            
             <nav>
                 <a href="#">HOME</a>
                 <a href="#">ABOUT US</a>

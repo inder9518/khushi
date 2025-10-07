@@ -57,7 +57,7 @@
             background-color: #2a649a; 
         }
 
-        /* --- New Mobile Menu Toggle Button (डेस्कटॉप पर छिपा हुआ) --- */
+        /* --- Mobile Menu Toggle Button (डेस्कटॉप पर छिपा हुआ) --- */
         .menu-toggle {
             display: none; 
             background: none;
@@ -190,7 +190,7 @@
             }
 
             .header-content {
-                flex-direction: row; /* लोगो और बटन को अगल-बगल रखें */
+                flex-direction: row; 
                 justify-content: space-between; 
                 align-items: center;
                 padding: 0; 
@@ -204,16 +204,16 @@
                 height: 30px; 
             }
             
-            /* मेन्यू बटन दिखाएं और लिंक्स छिपाएं */
+            /* मेन्यू बटन दिखाएं */
             .menu-toggle {
-                display: block; /* हैमबर्गर बटन दिखाएं */
+                display: block; 
             }
 
             .header-content nav {
                 /* मेन्यू लिंक छिपाएं (डिफ़ॉल्ट रूप से) */
                 display: none; 
                 position: absolute;
-                top: 70px; /* हेडर के नीचे */
+                top: 70px; 
                 left: 10px;
                 right: 10px;
                 background-color: #4a90e2;
@@ -222,9 +222,14 @@
                 z-index: 100;
                 padding: 10px 0;
             }
+            
+            /* जब 'open' क्लास लागू हो, तो मेन्यू दिखाएं */
+            .header-content nav.open {
+                display: block; 
+            }
 
             .header-content nav a {
-                display: block; /* लिंक को एक के नीचे एक दिखाएं */
+                display: block; 
                 margin: 5px 10px; 
                 padding: 10px;
                 width: auto;
@@ -270,10 +275,10 @@
     </header>
 
     <section class="info-box">
-        <h3>-:INFORMATION:-</h3>
-        <p>Har saal ki tarah is baar bhi hum Gurugram mein Chhath Maiya ka pavitra parv bade bhav se manayenge.
-Aaiye, surya dev aur chhathi maiya se sukh-samriddhi ki prarthana mein humare saath shamil hoiye.</p>
-THANK YOU
+        <h3>🌞 गुड़गाँव (गुरुग्राम) में छठ पूजा 2025 🌾</h3>
+        <p>छठ पूजा, **सूर्य देव** और **छठी मैया** (देवी षष्ठी) को समर्पित एक चार दिवसीय प्राचीन हिंदू महापर्व है। यह मुख्य रूप से परिवार की सुख-समृद्धि और संतान के कल्याण के लिए मनाया जाता है। **तिथि:** 25 अक्टूबर से 28 अक्टूबर 2025 तक।</p>
+        <p>Har saal ki tarah is baar bhi hum Gurugram mein Chhath Maiya ka pavitra parv bade bhav se manayenge. Aaiye, surya dev aur chhathi maiya se sukh-samriddhi ki prarthana mein humare saath shamil hoiye.</p>
+        <p style="font-weight: bold; margin-top: 10px;">THANK YOU</p>
     </section>
 
     
@@ -305,23 +310,26 @@ THANK YOU
                 <a href="#" class="card-button">GO</a>
             </div>
         </div>
-        </div>
     </section>
 
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const mainNav = document.getElementById('mainNav');
 
-        // Check if both elements exist before adding the event listener
         if (menuToggle && mainNav) {
+            // मेनू टॉगल करने के लिए 'open' क्लास का उपयोग
             menuToggle.addEventListener('click', () => {
-                // Toggle the 'display' property
-                if (mainNav.style.display === 'flex' || mainNav.style.display === 'block') {
-                    mainNav.style.display = 'none';
-                } else {
-                    // Mobile menu will be displayed as a column of links
-                    mainNav.style.display = 'block'; 
-                }
+                mainNav.classList.toggle('open');
+            });
+            
+            // मेनू में किसी भी लिंक पर क्लिक होने पर मेनू को बंद करना
+            const navLinks = mainNav.querySelectorAll('a');
+            navLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    // लिंक पर क्लिक होते ही 'open' क्लास हटा दें
+                    // जब पेज रीलोड होगा, तो मेनू डिफ़ॉल्ट रूप से बंद (display: none) रहेगा
+                    mainNav.classList.remove('open');
+                });
             });
         }
     </script>

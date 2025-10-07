@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Header with Left Logo, Info Box & Compact Photo Gallery Cards</title>
+    <title>Header with Mobile Menu, Info Box & Cards</title>
 
     <style>
         /* General Body Styles */
@@ -36,6 +36,11 @@
             height: 40px; 
         }
 
+        /* Menu Links (Desktop Style) */
+        .header-content nav {
+            display: block; /* डेस्कटॉप पर दिखाएं */
+        }
+        
         .header-content nav a {
             color: white;
             text-decoration: none;
@@ -50,6 +55,17 @@
 
         .header-content nav a:hover {
             background-color: #2a649a; 
+        }
+
+        /* --- New Mobile Menu Toggle Button (डेस्कटॉप पर छिपा हुआ) --- */
+        .menu-toggle {
+            display: none; 
+            background: none;
+            border: none;
+            color: white;
+            font-size: 24px;
+            cursor: pointer;
+            padding: 5px 10px;
         }
 
         /* --- Info Box --- */
@@ -173,9 +189,8 @@
                 padding: 15px 10px; 
             }
 
-            /* लोगो और मेन्यू को अगल-बगल रखें */
             .header-content {
-                flex-direction: row; 
+                flex-direction: row; /* लोगो और बटन को अगल-बगल रखें */
                 justify-content: space-between; 
                 align-items: center;
                 padding: 0; 
@@ -186,48 +201,49 @@
             }
 
             .logo-container img {
-                height: 30px; /* लोगो का साइज़ छोटा */
+                height: 30px; 
             }
             
+            /* मेन्यू बटन दिखाएं और लिंक्स छिपाएं */
+            .menu-toggle {
+                display: block; /* हैमबर्गर बटन दिखाएं */
+            }
+
             .header-content nav {
-                display: flex; 
-                flex-wrap: wrap; 
-                justify-content: flex-end; 
+                /* मेन्यू लिंक छिपाएं (डिफ़ॉल्ट रूप से) */
+                display: none; 
+                position: absolute;
+                top: 70px; /* हेडर के नीचे */
+                left: 10px;
+                right: 10px;
+                background-color: #4a90e2;
+                border-radius: 5px;
+                box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+                z-index: 100;
+                padding: 10px 0;
             }
 
             .header-content nav a {
-                display: inline-block; 
-                margin: 2px; /* बटन के बीच कम गैप */
-                padding: 6px 10px; /* बटन का साइज़ छोटा */
-                width: auto; 
-                font-size: 0.8em;
+                display: block; /* लिंक को एक के नीचे एक दिखाएं */
+                margin: 5px 10px; 
+                padding: 10px;
+                width: auto;
+                text-align: left;
+                background-color: #357abd;
+                font-size: 1em;
             }
-            /* इन्फो बॉक्स और कार्ड्स के लिए बाकी स्टाइल */
+
+            /* बाकी सब वही */
             .info-box {
                 margin: 0 10px 15px 10px; 
             }
-
             .gallery-container {
                 grid-template-columns: 1fr; 
                 padding: 15px;
                 margin: 0 10px 30px 10px;
             }
-            .gallery-card {
-                border-left-width: 4px; 
-            }
             .gallery-card img {
                 height: 140px; 
-            }
-            .card-content h4 {
-                font-size: 1.2em;
-            }
-            .card-content p {
-                font-size: 0.9em;
-                margin-bottom: 10px;
-            }
-            .card-button {
-                padding: 10px 0;
-                font-size: 0.9em;
             }
         }
     </style>
@@ -241,7 +257,11 @@
                 <img src="https://via.placeholder.com/150x40/4a90e2/FFFFFF?text=My+Logo" alt="My Website Logo">
             </div>
             
-            <nav>
+            <button class="menu-toggle" id="menuToggle">
+                ☰ 
+            </button>
+
+            <nav id="mainNav">
                 <a href="#">HOME</a>
                 <a href="#">ABOUT US</a>
                 <a href="#">CONTACT US</a>
@@ -294,5 +314,22 @@
         </div>
     </section>
 
+    <script>
+        const menuToggle = document.getElementById('menuToggle');
+        const mainNav = document.getElementById('mainNav');
+
+        // Check if both elements exist before adding the event listener
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', () => {
+                // Toggle the 'display' property
+                if (mainNav.style.display === 'flex' || mainNav.style.display === 'block') {
+                    mainNav.style.display = 'none';
+                } else {
+                    // Mobile menu will be displayed as a column of links
+                    mainNav.style.display = 'block'; 
+                }
+            });
+        }
+    </script>
 </body>
 </html>

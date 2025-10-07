@@ -179,6 +179,18 @@
             background-color: #357abd;
             transform: translateY(-2px); 
         }
+        
+        /* --- Footer Styles (About Us Code से लिया गया) --- */
+        footer {
+            text-align: center;
+            padding: 15px;
+            background-color: #4a90e2;
+            color: white;
+            border-radius: 15px;
+            margin: 20px;
+            font-size: 0.9em;
+        }
+
 
         /* ---------------------------------- */
         /* Responsive Design for Mobile Phones */
@@ -250,6 +262,10 @@
             .gallery-card img {
                 height: 140px; 
             }
+            /* फुटर के मार्जिन को मोबाइल के लिए भी एडजस्ट करें */
+            footer {
+                margin: 10px;
+            }
         }
     </style>
 </head>
@@ -287,7 +303,7 @@
             <img src="generated-image.png" alt="गैलरी इमेज 1">
             <div class="card-content">
                 <h4>2025</h4>
-                <p>GET YOUR 2025 PHOTOS FROME HERE</p>
+                <p>GET YOUR 2025 PHOTOS FROM HERE</p>
                 <a href="#" class="card-button">GO</a>
             </div>
         </div>
@@ -296,7 +312,7 @@
             <img src="generated-image.png" alt="गैलरी इमेज 2">
             <div class="card-content">
                 <h4>2024</h4>
-                <p>GET YOUR 2024 PHOTOS FROME HERE</p>
+                <p>GET YOUR 2024 PHOTOS FROM HERE</p>
                 <a href="#" class="card-button">GO</a>
             </div>
         </div>
@@ -305,12 +321,15 @@
             <img src="generated-image.png" alt="गैलरी इमेज 3">
             <div class="card-content">
                 <h4>2023</h4>
-                <p>GET YOUR 2023 PHOTOS FROME HERE</p>
+                <p>GET YOUR 2023 PHOTOS FROM HERE</p>
                 <a href="#" class="card-button">GO</a>
             </div>
         </div>
     </section>
 
+    <footer>
+        © 2025 Khushi Photos. All rights reserved.
+    </footer>
     <script>
         const menuToggle = document.getElementById('menuToggle');
         const mainNav = document.getElementById('mainNav');

@@ -18,26 +18,23 @@
         .curved-header {
             background-color: #4a90e2; 
             color: white;
-            padding: 20px; /* अब यह सिर्फ ऊपर-नीचे की पैडिंग देगा */
+            padding: 20px; 
             margin: 20px; 
             border-radius: 15px; 
-            /* text-align: center; <--- इसे हटा दिया गया है */
         }
 
-        /* --- .header-content में बदलाव किए गए हैं --- */
+        /* Desktop View: Logo Left, Menu Right */
         .header-content {
-            display: flex; /* फ्लेक्सबॉक्स लेआउट */
-            justify-content: space-between; /* सामग्री को किनारों पर धकेलें (लोगो बाएं, नेविगेशन दाएं) */
-            align-items: center; /* लंबवत रूप से केंद्र में करें */
-            padding: 0 20px; /* हेडर के अंदर थोड़ी बाएं-दाएं पैडिंग */
-            flex-wrap: wrap; /* मोबाइल पर तत्वों को अगली लाइन में भेजने के लिए */
+            display: flex; 
+            justify-content: space-between; 
+            align-items: center; 
+            padding: 0 20px; 
+            flex-wrap: wrap; 
         }
 
         .logo-container img {
-            height: 40px; /* लोगो की ऊंचाई */
-            /* आप चाहें तो चौड़ाई भी सेट कर सकते हैं: width: auto; */
+            height: 40px; 
         }
-        /* ------------------------------------------- */
 
         .header-content nav a {
             color: white;
@@ -55,7 +52,7 @@
             background-color: #2a649a; 
         }
 
-        /* --- Info Box (छोटा किया गया) --- */
+        /* --- Info Box --- */
         .info-box {
             background-color: #eaf2fd; 
             border-left: 5px solid #4a90e2; 
@@ -81,9 +78,8 @@
             margin-top: 0;
             font-size: 0.9em; 
         }
-        /* --- इन्फो बॉक्स का CSS खत्म --- */
 
-        /* --- Photo Gallery Cards (साइज़ छोटा किया गया) --- */
+        /* --- Photo Gallery Cards --- */
         .gallery-container {
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(230px, 1fr)); 
@@ -105,7 +101,6 @@
             flex-direction: column;
         }
 
-        /* प्रत्येक कार्ड के लिए अलग बॉर्डर रंग */
         .gallery-card:nth-child(1) { border-left-color: #4a90e2; } 
         .gallery-card:nth-child(2) { border-left-color: #33CCFF; } 
         .gallery-card:nth-child(3) { border-left-color: #FF9933; } 
@@ -168,7 +163,6 @@
             background-color: #357abd;
             transform: translateY(-2px); 
         }
-        /* --- Photo Gallery Cards का CSS खत्म --- */
 
         /* ---------------------------------- */
         /* Responsive Design for Mobile Phones */
@@ -176,25 +170,39 @@
         @media (max-width: 600px) {
             .curved-header {
                 margin: 10px; 
-                padding: 15px 10px; /* मोबाइल पर पैडिंग एडजस्ट की गई */
+                padding: 15px 10px; 
             }
 
+            /* लोगो और मेन्यू को अगल-बगल रखें */
             .header-content {
-                flex-direction: column; /* मोबाइल पर लोगो और बटन को एक के नीचे एक रखें */
-                text-align: center;
-                padding: 0; /* मोबाइल पर पैडिंग हटा दें */
+                flex-direction: row; 
+                justify-content: space-between; 
+                align-items: center;
+                padding: 0; 
             }
 
             .logo-container {
-                margin-bottom: 15px; /* लोगो के नीचे गैप */
+                margin-bottom: 0; 
+            }
+
+            .logo-container img {
+                height: 30px; /* लोगो का साइज़ छोटा */
+            }
+            
+            .header-content nav {
+                display: flex; 
+                flex-wrap: wrap; 
+                justify-content: flex-end; 
             }
 
             .header-content nav a {
-                display: block; 
-                margin: 5px auto; 
-                width: 80%; 
+                display: inline-block; 
+                margin: 2px; /* बटन के बीच कम गैप */
+                padding: 6px 10px; /* बटन का साइज़ छोटा */
+                width: auto; 
+                font-size: 0.8em;
             }
-
+            /* इन्फो बॉक्स और कार्ड्स के लिए बाकी स्टाइल */
             .info-box {
                 margin: 0 10px 15px 10px; 
             }
@@ -228,6 +236,7 @@
 
     <header class="curved-header">
         <div class="header-content">
+            
             <div class="logo-container">
                 <img src="https://via.placeholder.com/150x40/4a90e2/FFFFFF?text=My+Logo" alt="My Website Logo">
             </div>
